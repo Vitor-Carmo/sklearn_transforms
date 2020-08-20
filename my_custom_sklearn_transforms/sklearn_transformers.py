@@ -40,9 +40,13 @@ class FillNaNColumns(BaseEstimator, TransformerMixin):
     def fit(self, X, y=None):
         return self
     
+    def getColumns(self):
+        return self.columns
+    
     def transform(self, X):
         data = X.copy()
-        for column in self.columns:
+        c = self.getColumns()
+        for column in c:
             data[column].fillna(self.fill, inplace=True)
         return data
 
@@ -62,4 +66,4 @@ class FixColumnsOverTen(BaseEstimator, TransformerMixin):
             data.loc[data[column] > 10, column] = 10
         return data
         
- 
+      
