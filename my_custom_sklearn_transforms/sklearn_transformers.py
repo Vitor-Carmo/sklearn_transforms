@@ -33,17 +33,18 @@ class AvgColumns(BaseEstimator, TransformerMixin):
     
 
 class FillNaNColumns(BaseEstimator, TransformerMixin):
+    
     def __init__(self, columns, fill=0):
-        self.columns = columns
-        self.fill = fill
+        self.__columns = columns
+        self.__fill = fill
 
     def fit(self, X, y=None):
         return self
     
     def transform(self, X):
         data = X.copy()
-        for column in self.columns:
-            data[column].fillna(self.fill, inplace=True)
+        for column in self.__columns:
+            data[column].fillna(self.__fill, inplace=True)
         return data
 
 
