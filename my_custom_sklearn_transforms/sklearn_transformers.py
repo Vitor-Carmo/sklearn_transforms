@@ -27,7 +27,7 @@ class AvgColumns(BaseEstimator, TransformerMixin):
     
     def transform(self, X):
         data = X.copy()
-        for column in columns:
+        for column in self.columns:
             data[column].fillna(data[column].mean(), inplace=True)
         return data
     
@@ -42,7 +42,7 @@ class FillNaNColumns(BaseEstimator, TransformerMixin):
     
     def transform(self, X):
         data = X.copy()
-        for column in columns:
+        for column in self.columns:
             data[column].fillna(self.fill, inplace=True)
         return data
 
@@ -58,8 +58,8 @@ class FixColumnsOverTen(BaseEstimator, TransformerMixin):
     
     def transform(self, X):
         data = X.copy()
-        for column in columns:
+        for column in self.columns:
             data.loc[data[column] > 10, column] = 10
         return data
         
-      
+ 
